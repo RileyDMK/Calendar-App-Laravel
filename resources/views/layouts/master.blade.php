@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
+    <link href="public/css/cover.css" rel="stylesheet">
   </head>
 
   <body>
@@ -30,11 +30,22 @@
                 <a class="nav-link active" href="#">Home</a>
                 <a class="nav-link" href="#">Features</a>
                 <a class="nav-link" href="#">Contact</a>
+                @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('register') }}">Register</a>
+                        @endauth
+                    </div>
+                @endif
               </nav>
             </div>
           </div>
 
           <div class="inner cover">
+            @yield('content')
             <h1 class="cover-heading">Cover your page.</h1>
             <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
             <p class="lead">
